@@ -1,34 +1,19 @@
 $(window).scroll(function(){
 		var _windowScroll = $(this).scrollTop();
 
+		var prefixes = ['-webkit-', '-moz-', '-ms-', '-o-', ''];
+		var cssObj = {};
 
+		$.each(prefixes, function(k, v) {
+		  cssObj[prefixes[k] + 'transform'] = 'translate3d('+_windowScroll+'px, 0px, 0px)';
+		});
+		console.log(cssObj)
+		$('.wrap-sect').css(cssObj);
 
-		function browser(){
-			var ua = navigator.userAgent;
-
-			if (ua.search(/MSIE/) != -1) return 'Internet Explorer';
-			if (ua.search(/Firefox/) != -1) return 'Firefox';
-			if (ua.search(/Opera/)  != -1) return 'Opera';
-			if (ua.search(/Chrome/) != -1) return 'Google Chrome';
-			if (ua.search(/Safari/) != -1) return 'Safari';
-			if (ua.search(/Konqueror/) != -1) return 'Konqueror';
-			if (ua.search(/Iceweasel/) != -1) return 'Debian Iceweasel';
-			if (ua.search(/SeaMonkey/) != -1) return 'SeaMonkey';
-
-			if (ua.search(/Gecko/) != -1) return 'Gecko';
-
-			return 'Search Bot';
-		}
-
-		if(browser() == 'Google Chrome'){
-			$('.site').css({
-						'transform':'translateX('+_windowScroll+'px)',
-			});
-		}else if(browser() == 'Internet Explorer'){
-			$('.site').css({
-						'-ms-transform':'translateX('+_windowScroll+'px)',
-			});
-		}
+			// $('.site').css({
+			// 			'transform':'translateX('+_windowScroll+'px)',
+			// });
+		
 
 		
 
